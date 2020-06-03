@@ -1,14 +1,4 @@
-﻿/// <summary>
-/// 2D Space Shooter Example
-/// By Bug Games www.Bug-Games.net
-/// Programmer: Danar Kayfi - Twitter: @DanarKayfi
-/// Special Thanks to Kenney for the CC0 Graphic Assets: www.kenney.nl
-/// 
-/// This is the EnemyRed Script:
-/// - Enemy Ship Movement/Health/Score
-/// - Explosion Trigger
-/// 
-/// </summary>
+﻿
 
 using UnityEngine;
 using System.Collections;

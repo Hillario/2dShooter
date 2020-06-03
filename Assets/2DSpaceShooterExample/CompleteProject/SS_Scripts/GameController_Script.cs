@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 //Asteroid Properties
 [System.Serializable]
-public class Asteroid 
+public class Asteroid //obstacle
 {
 	public GameObject asteroidBigObj; 		//Object Prefab
 	public int Count; 						//Number of the object in 1 wave
@@ -59,7 +60,7 @@ public class GameController_Script : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		StartCoroutine (asteroidSpawnWaves());  	//Start IEnumerator function
+		StartCoroutine (asteroidSpawnWaves());  	//Start IEnumerator function //start asteroiSpawnWaves() after some seconds
 		StartCoroutine (enemyBlueSpawnWaves());		//Start IEnumerator function
 		StartCoroutine (enemyGreenSpawnWaves());	//Start IEnumerator function
 		StartCoroutine (enemyRedSpawnWaves());		//Start IEnumerator function
@@ -68,6 +69,13 @@ public class GameController_Script : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+
+		//game levels here
+
+		//if (Score == 300) {
+			//SceneManager.LoadScene(0);
+			//EnemyRed.count = 10;
+		//}
 
 		if (SystemInfo.deviceType == DeviceType.Desktop)
 		{
@@ -94,6 +102,8 @@ public class GameController_Script : MonoBehaviour
 		}
 	}
 
+
+
 	//Asteroid IEnumerator Coroutine
 	IEnumerator asteroidSpawnWaves()
 	{
@@ -106,7 +116,7 @@ public class GameController_Script : MonoBehaviour
 			for (int i = 0; i < asteroid.Count; i++)
 			{
 				Vector2 spawnPosition = new Vector2 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y);		//Random Spawn Position
-				Quaternion spawnRotation = Quaternion.identity;							 								//Default Rotation
+				Quaternion spawnRotation = Quaternion.identity;		//to prevent the gimble lock problem					 								//Default Rotation
 				Instantiate (asteroid.asteroidBigObj, spawnPosition, spawnRotation); 									//Instantiate Object
 				yield return new WaitForSeconds (asteroid.SpawnWait); 													//Wait for seconds before spawning the next object
 			}

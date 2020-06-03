@@ -31,7 +31,7 @@ public class SharedValues_Script : MonoBehaviour
 		if (gameover == true)
 		{
 			GameOverText.text = "GAME OVER"; 			//Show GUI GameOver
-			FinalScoreText.text = "" + score; 			//Show GUI FinalScore
+			FinalScoreText.text = "" + score; 			//Show GUI FinalScore //PlayerPrefs-->HighScores
 			ReplayText.text = "PRESS R/Touch TO REPLAY"; 		//Show GUI Replay
 		}
 	}

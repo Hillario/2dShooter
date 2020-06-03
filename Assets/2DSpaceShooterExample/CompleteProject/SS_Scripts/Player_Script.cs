@@ -2,6 +2,8 @@
 using System.Collections;
 
 [System.Serializable]
+
+//container class
 public class Boundary 
 {
 	public float xMin, xMax, yMin, yMax; //Screen Boundary dimentions
@@ -10,15 +12,15 @@ public class Boundary
 public class Player_Script : MonoBehaviour 
 {
 	//Public Var
-	public float speed; 			//Player Ship Speed
+	public float speed; 			//Player Ship Speed --> Control parameter for your levels
 	public Boundary boundary; 		//make an Object from Class Boundary
 	public GameObject shot;			//Fire Prefab
 	public Transform shotSpawn;		//Where the Fire Spawn
-	public float fireRate = 0.5F;	//Fire Rate between Shots
+	public float fireRate = 0.5F;	//Fire Rate between Shots //amount of shots per second
 	public GameObject Explosion;	//Explosion Prefab
 
 	//Private Var
-	private float nextFire = 0.0F;	//First fire & Next fire Time
+	private float nextFire = 0.0F;	//First fire & Next fire Time  //settings for the fire rate
 
 
 	// Update is called once per frame
@@ -28,7 +30,7 @@ public class Player_Script : MonoBehaviour
 		if (Time.time > nextFire) 
 		{
 			nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
-			Instantiate (shot , shotSpawn.position ,shotSpawn.rotation); 	//Instantiate fire shot 
+			Instantiate (shot , shotSpawn.position ,shotSpawn.rotation); 	//Instantiate fire shot 3D-->Quaternion.Identity(Gimble Lock)-->(x,y,z,w)
 			GetComponent<AudioSource>().Play (); 													//Play Fire sound
 		}
 	}
@@ -36,7 +38,7 @@ public class Player_Script : MonoBehaviour
 	// FixedUpdate is called one per specific time
 	void FixedUpdate ()
 	{
-		if (SystemInfo.deviceType == DeviceType.Desktop)
+		if (SystemInfo.deviceType == DeviceType.Desktop) //pc--> Win,Linux,Mac
 		{
 			float moveHorizontal = Input.GetAxis("Horizontal");                 //Get if Any Horizontal Keys pressed
 			float moveVertical = Input.GetAxis("Vertical");                 //Get if Any Vertical Keys pressed
@@ -60,14 +62,19 @@ public class Player_Script : MonoBehaviour
 	}
 
 	//Called when the Trigger entered
-	void OnTriggerEnter2D(Collider2D other)
+	void OnTriggerEnter2D(Collider2D other) //other is an object of the Collider2d Class
 	{
 		//Excute if the object tag was equal to one of these
 		if(other.tag == "Enemy" || other.tag == "Asteroid" || other.tag == "EnemyShot") 
 		{
+			//player health
+			//decrement --10
+
 			Instantiate (Explosion, transform.position , transform.rotation); 				//Instantiate Explosion
 			SharedValues_Script.gameover = true; 											//Trigger That its a GameOver
-			Destroy(gameObject); 															//Destroy Player Ship Object
+			Destroy(gameObject);                                                            //Destroy Player Ship Object
+																							//sytem to prompt that player is eliminated
+			//Debug.Log("Player is DEAD!");
 		}
 	}
 }
