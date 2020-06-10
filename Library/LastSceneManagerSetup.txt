@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/2DSpaceShooterExample/CompleteProject/_SS_Scenes/Scene_01.unity
+- path: Assets/2DSpaceShooterExample/CompleteProject/_SS_Scenes/MainMenu.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

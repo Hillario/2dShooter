@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 public class SharedValues_Script : MonoBehaviour 
 {
@@ -30,9 +30,20 @@ public class SharedValues_Script : MonoBehaviour
 		//Excute when the GameOver Trigger is True
 		if (gameover == true)
 		{
+			StartCoroutine("LoadMainMenu");             //coroutine initiated
 			GameOverText.text = "GAME OVER"; 			//Show GUI GameOver
 			FinalScoreText.text = "" + score; 			//Show GUI FinalScore //PlayerPrefs-->HighScores
-			ReplayText.text = "PRESS R/Touch TO REPLAY"; 		//Show GUI Replay
+			ReplayText.text = "";                       //Show GUI Replay
+			
 		}
 	}
+
+	IEnumerator LoadMainMenu()
+    {
+		yield return new WaitForSeconds(5f);    //wait for 5 seconds--> float datatype         
+		SceneManager.LoadScene(0);              //load int scene
+    }
+
+
+
 }

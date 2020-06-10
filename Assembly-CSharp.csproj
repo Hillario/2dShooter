@@ -71,6 +71,7 @@
     <Compile Include="Assets\2DSpaceShooterExample\CompleteProject\SS_Scripts\EnemyShot_Script.cs" />
     <Compile Include="Assets\2DSpaceShooterExample\CompleteProject\SS_Scripts\GameController_Script.cs" />
     <Compile Include="Assets\2DSpaceShooterExample\CompleteProject\SS_Scripts\LaserHit_Script.cs" />
+    <Compile Include="Assets\2DSpaceShooterExample\CompleteProject\SS_Scripts\MenuEvent.cs" />
     <Compile Include="Assets\2DSpaceShooterExample\CompleteProject\SS_Scripts\PlayerShipShots_Script.cs" />
     <Compile Include="Assets\2DSpaceShooterExample\CompleteProject\SS_Scripts\Player_Script.cs" />
     <Compile Include="Assets\2DSpaceShooterExample\CompleteProject\SS_Scripts\SharedValues_Script.cs" />

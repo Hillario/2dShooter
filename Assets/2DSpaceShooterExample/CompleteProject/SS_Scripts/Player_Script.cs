@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 
@@ -38,6 +39,7 @@ public class Player_Script : MonoBehaviour
 	// FixedUpdate is called one per specific time
 	void FixedUpdate ()
 	{
+        
 		if (SystemInfo.deviceType == DeviceType.Desktop) //pc--> Win,Linux,Mac
 		{
 			float moveHorizontal = Input.GetAxis("Horizontal");                 //Get if Any Horizontal Keys pressed
@@ -71,10 +73,13 @@ public class Player_Script : MonoBehaviour
 			//decrement --10
 
 			Instantiate (Explosion, transform.position , transform.rotation); 				//Instantiate Explosion
-			SharedValues_Script.gameover = true; 											//Trigger That its a GameOver
+			SharedValues_Script.gameover = true;                                            //Trigger That its a GameOver
 			Destroy(gameObject);                                                            //Destroy Player Ship Object
-																							//sytem to prompt that player is eliminated
-			//Debug.Log("Player is DEAD!");
+			                                                 
+			                                                                            //sytem to prompt that player is eliminated
+																															//Debug.Log("Player is DEAD!");
 		}
 	}
+
+	
 }
