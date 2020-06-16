@@ -7,9 +7,9 @@ public class EnemyGreen_Script : MonoBehaviour
 {
 
 	//Public Var
-	public float speed;						//Enemy Ship Speed -->customizing the difficulty level
-	public int health;                      //Enemy Ship Health  -->customizing the difficulty level
-	public GameObject LaserGreenHit;		//LaserGreenHit Prefab -->player shot has been inflicted on the enemy
+	public  static float speed;						//Enemy Ship Speed -->customizing the difficulty level
+	public static int health;                      //Enemy Ship Health  -->customizing the difficulty level
+	public static GameObject LaserGreenHit;		//LaserGreenHit Prefab -->player shot has been inflicted on the enemy
 	public GameObject Explosion;			//Explosion Prefab
 	public int ScoreValue;                  //How much the Enemy Ship give score after explosion  -->customizing the difficulty level
 	public GameObject shot; 				//Fire Prefab
@@ -61,4 +61,5 @@ public class EnemyGreen_Script : MonoBehaviour
 		}
 		
 	}
+
 }

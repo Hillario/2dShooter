@@ -15,25 +15,59 @@ public class Player_Script : MonoBehaviour
 	//Public Var
 	public float speed; 			//Player Ship Speed --> Control parameter for your levels
 	public Boundary boundary; 		//make an Object from Class Boundary
-	public GameObject shot;			//Fire Prefab
-	public Transform shotSpawn;		//Where the Fire Spawn
+	public GameObject shot;         //Fire Prefab //--> Weapon1
+	public GameObject shot2;         //Fire Prefab //--> Weapon2
+	public GameObject shot3;         //Fire Prefab //--> Weapon3
+	public Transform shotSpawn;
+	public Transform shotSpawn2; //Where the Fire Spawn
+	public Transform shotSpawn3; //Where the Fire Spawn
+
 	public float fireRate = 0.5F;	//Fire Rate between Shots //amount of shots per second
-	public GameObject Explosion;	//Explosion Prefab
+	public GameObject Explosion;    //Explosion Prefab
+
+
+
 
 	//Private Var
-	private float nextFire = 0.0F;	//First fire & Next fire Time  //settings for the fire rate
+	private float nextFire = 0.0F;  //First fire & Next fire Time  //settings for the fire rate
+									//score from score system
+	private float myScore;
+
+   
 
 
-	// Update is called once per frame
-	void Update () 
+    // Update is called once per frame
+    void Update () 
 	{
 		//Excute When the Current Time is bigger than the nextFire time
 		if (Time.time > nextFire) 
 		{
-			nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
-			Instantiate (shot , shotSpawn.position ,shotSpawn.rotation); 	//Instantiate fire shot 3D-->Quaternion.Identity(Gimble Lock)-->(x,y,z,w)
-			GetComponent<AudioSource>().Play (); 													//Play Fire sound
+			nextFire = Time.time + fireRate;                                //Increment nextFire time with the current system time + fireRate
+			myScore = SharedValues_Script.score; //local variable accessing the score system script
+
+			if (myScore >= 0 && myScore <= 50)
+			{
+
+				Instantiate(shot, shotSpawn.position, shotSpawn.rotation);  //Instantiate fire shot 3D-->Quaternion.Identity(Gimble Lock)-->(x,y,z,w)
+				GetComponent<AudioSource>().Play();                                                     //Play Fire sound
+			}
+
+			else if (myScore >= 51 && myScore <= 100) {
+
+				Instantiate(shot2, shotSpawn.position, shotSpawn.rotation);  //Instantiate fire shot 3D-->Quaternion.Identity(Gimble Lock)-->(x,y,z,w)
+				Instantiate(shot2, shotSpawn2.position, shotSpawn.rotation);  //Instantiate fire shot 3D-->Quaternion.Identity(Gimble Lock)-->(x,y,z,w)
+				GetComponent<AudioSource>().Play();                                                     //Play Fire sound
+
+			}
+			else if (myScore >= 101)
+            {
+				Instantiate(shot3, shotSpawn.position, shotSpawn.rotation);  //Instantiate fire shot 3D-->Quaternion.Identity(Gimble Lock)-->(x,y,z,w)
+				Instantiate(shot3, shotSpawn2.position, shotSpawn.rotation);  //Instantiate fire shot 3D-->Quaternion.Identity(Gimble Lock)-->(x,y,z,w)
+				Instantiate(shot3, shotSpawn3.position, shotSpawn.rotation);  //Instantiate fire shot 3D-->Quaternion.Identity(Gimble Lock)-->(x,y,z,w)
+				GetComponent<AudioSource>().Play();                                                     //Play Fire sound
+			}
 		}
+			
 	}
 
 	// FixedUpdate is called one per specific time
@@ -75,9 +109,10 @@ public class Player_Script : MonoBehaviour
 			Instantiate (Explosion, transform.position , transform.rotation); 				//Instantiate Explosion
 			SharedValues_Script.gameover = true;                                            //Trigger That its a GameOver
 			Destroy(gameObject);                                                            //Destroy Player Ship Object
-			                                                 
-			                                                                            //sytem to prompt that player is eliminated
-																															//Debug.Log("Player is DEAD!");
+
+			                                                                         //sytem to prompt that player is eliminated
+			
+			
 		}
 	}
 
